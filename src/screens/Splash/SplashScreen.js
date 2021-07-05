@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { LogoContact } from '../../assets'
 import * as Animatable from 'react-native-animatable'
-// import { Fonts } from '../../consts'
+import { Colors, Fonts } from '../../consts'
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
+      navigation.reset({ index: 0, routes: [{ name: 'ListContact' }] })
     }, 2500);
   }, [navigation])
 
@@ -30,15 +30,15 @@ const SplashScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFC700',
+    backgroundColor: Colors.marigold,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
   title: {
-    fontSize: 24,
-    color: '#020202',
-    // fontFamily: Fonts.POPPINS_MEDIUM
+    fontSize: 16,
+    color: Colors.black,
+    fontFamily: Fonts.POPPINS_MEDIUM
   }
 })
 
