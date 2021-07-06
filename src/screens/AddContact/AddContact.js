@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { Header, TextInput, Gap, Button } from '../../components'
 import { useForm } from '../../hooks'
@@ -13,7 +13,7 @@ const AddContact = ({ navigation }) => {
     firstName: '',
     lastName: '',
     age: '',
-    photo: 'http://vignette1.wikia.nocookie.net/lotr/images/6/68/Bilbo_baggins.jpg/revision/latest?cb=20130202022550'
+    photo: 'https://source.unsplash.com/random/640480'
   })
 
   const onSave = () => {
@@ -30,8 +30,8 @@ const AddContact = ({ navigation }) => {
           <View style={Styles.photo}>
             <TouchableOpacity >
               <View style={Styles.borderPhoto}>
-                {photo
-                  ? <Image source={photo} style={Styles.photoContainer} />
+                {form.photo
+                  ? <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
                   : (
                     <View style={Styles.photoContainer}>
                       <Text style={Styles.addPhoto}>Add Photo</Text>
