@@ -1,6 +1,7 @@
 import {
   getContact as getContactApi,
-  postContact
+  postContact,
+  deleteContact as deleteContactApi
 } from '../../api/contact/ContactApi'
 import { showMessage } from '../../utils'
 import { setLoading, setLoadingGlobal } from './global'
@@ -34,6 +35,26 @@ export const getContact = () => async (dispatch) => {
     // console.log('getContact: ', response)
     dispatch({ type: 'GET_CONTACT', value: response.data.data })
   } catch (error) {
+    dispatch(setLoadingGlobal(false))
+    const title = "Error"
+    const message = error?.message
+    showMessage(title, message)
+  }
+}
+
+export const deleteContact = (param, navigation) => async (dispatch) => {
+  dispatch(setLoadingGlobal(true))
+  try {
+    const response = await deleteContactApi(param)
+    dispatch(setLoadingGlobal(false))
+    console.log('deleteContact: ', response)
+    const status = response.status
+    // if (status === 200 || ) {
+    //   navigation.goBack()
+    // }
+    dispatch({ type: 'DELETE_CONTACT', value: response.data })
+  } catch (error) {
+    console.log('error-deleteContact: ', error.response)
     dispatch(setLoadingGlobal(false))
     const title = "Error"
     const message = error?.message

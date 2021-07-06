@@ -5,21 +5,22 @@ import { Colors, Fonts } from '../../consts'
 import { Scale } from '../../utils'
 import { useNavigation } from '@react-navigation/native'
 
-const CardContact = ({ photo = ProfileDummy, name, age }) => {
+const CardContact = ({ photo = ProfileDummy, name, age, data }) => {
   const navigation = useNavigation()
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('DetailContact')}
+      onPress={() => navigation.navigate('DetailContact', data)}
     >
       <Image
-        source={photo}
+        // source={photo}
+        source={{ uri: data?.photo }}
         style={styles.image}
       />
       <View style={styles.content}>
-        <Text style={styles.title}>Name: {name}</Text>
-        <Text style={styles.title}>Age: {age}</Text>
+        <Text style={styles.title}>Name: {data?.firstName} {data?.lastName} </Text>
+        <Text style={styles.title}>Age: {data?.age}</Text>
       </View>
     </TouchableOpacity>
   )

@@ -27,9 +27,10 @@ const ListContact = ({ navigation }) => {
           renderItem={({ item }) => {
             return (
               <CardContact
-                name={item.firstName + ' ' + item.lastName}
-                age={item.age}
-                photo={{ uri: item.photo }}
+                data={item}
+              // name={item.firstName + ' ' + item.lastName}
+              // age={item.age}
+              // photo={{ uri: item.photo }}
               />
             )
           }}
