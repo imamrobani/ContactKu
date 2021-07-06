@@ -27,7 +27,7 @@ const DATA = [
   },
 ]
 
-const ListContact = () => {
+const ListContact = ({ navigation }) => {
   return (
     <View style={Styles.screen}>
       <Header label="List Contact" />
@@ -47,7 +47,7 @@ const ListContact = () => {
         />
       </View>
       <View style={Styles.buttonContainer}>
-        <AddButton />
+        <AddButton onPress={() => navigation.navigate('AddContact')} />
       </View>
     </View>
   )

@@ -4,7 +4,8 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import {
   SplashScreen,
   Home,
-  ListContact
+  ListContact,
+  AddContact
 } from '../screens'
 // import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 
@@ -35,6 +36,7 @@ const Router = () => {
       <Stack.Screen name='SplashScreen' component={SplashScreen} />
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='ListContact' component={ListContact} />
+      <Stack.Screen name='AddContact' component={AddContact} />
     </Stack.Navigator>
   )
 }

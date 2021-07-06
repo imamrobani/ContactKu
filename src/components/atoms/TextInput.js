@@ -9,6 +9,7 @@ const TextInput = ({ label, placeholder, ...restProps }) => {
       <TextInputRN
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor={Colors.blueyGrey}
         {...restProps}
       />
     </View>
@@ -21,11 +22,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontFamily: Fonts.POPPINS_REGULAR,
-    color: "#020202"
+    color: Colors.black
   },
   input: {
     borderWidth: 1,
-    borderColor: '#020202',
+    borderColor: Colors.black,
     borderRadius: 8,
     padding: 10,
     color: Colors.black
