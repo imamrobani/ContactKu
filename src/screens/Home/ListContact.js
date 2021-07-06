@@ -1,33 +1,12 @@
 import React, { useEffect } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { Header, CardContact, AddButton } from '../../components'
+import { IcHomeOn } from '../../assets'
+import { Header, CardContact, AddButton, EmptyContact } from '../../components'
 import { getContact } from '../../redux/action/contact'
 import Styles from './Styles'
 
-const DATA = [
-  {
-    id: 1,
-    firstName: "Imam",
-    lastName: "Robani",
-    age: 25,
-    photo: 'https://source.unsplash.com/random/1024x500'
-  },
-  {
-    id: 2,
-    firstName: "Imam",
-    lastName: "Robani",
-    age: 25,
-    photo: 'https://source.unsplash.com/random/1024x500'
-  },
-  {
-    id: 3,
-    firstName: "Imam",
-    lastName: "Robani",
-    age: 25,
-    photo: 'https://source.unsplash.com/random/1024x500'
-  },
-]
+const DATA = []
 
 const ListContact = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -54,6 +33,11 @@ const ListContact = ({ navigation }) => {
               />
             )
           }}
+          ListEmptyComponent={
+            <View style={{ height: Dimensions.get('window').height }}>
+              <EmptyContact />
+            </View>
+          }
         />
       </View>
       <View style={Styles.buttonContainer}>
