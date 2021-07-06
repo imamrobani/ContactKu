@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { View, FlatList } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Header, CardContact, AddButton } from '../../components'
+import { getContact } from '../../redux/action/contact'
 import Styles from './Styles'
 
 const DATA = [
@@ -29,13 +30,20 @@ const DATA = [
 ]
 
 const ListContact = ({ navigation }) => {
+  const dispatch = useDispatch()
+
+  const { contact } = useSelector(state => state.contactReducer)
+
+  useEffect(() => {
+    dispatch(getContact())
+  }, [])
 
   return (
     <View style={Styles.screen}>
       <Header label="List Contact" />
       <View style={Styles.listContainer}>
         <FlatList
-          data={DATA}
+          data={contact}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => {
             return (

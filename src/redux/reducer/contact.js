@@ -1,5 +1,5 @@
 const iniStateContact = {
-  contact =[]
+  contact: []
 }
 
 export const contactReducer = (state = iniStateContact, action) => {
