@@ -5,11 +5,11 @@ import { Colors, Fonts } from '../../consts'
 import { Scale } from '../../utils'
 import { Gap } from '../atoms'
 
-const Header = ({ onBack, label }) => {
+const Header = ({ onBack, label, icon, onPress }) => {
   return (
     <View style={styles.container}>
       {onBack &&
-        <View style={styles.backContainer}>
+        <View>
           <TouchableOpacity onPress={onBack}>
             <IcBack />
           </TouchableOpacity>
@@ -17,6 +17,9 @@ const Header = ({ onBack, label }) => {
         </View>
       }
       <Text style={styles.label}>{label}</Text>
+      <TouchableOpacity onPress={onPress}>
+        {icon}
+      </TouchableOpacity>
     </View>
   )
 }
@@ -33,8 +36,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 1,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   backContainer: {
     marginLeft: 8
