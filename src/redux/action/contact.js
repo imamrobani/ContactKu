@@ -38,7 +38,7 @@ export const getContact = () => async (dispatch) => {
   } catch (error) {
     dispatch(setLoadingGlobal(false))
     const title = "Error"
-    const message = error?.message
+    const message = error?.response?.data?.message
     showMessage(title, message)
   }
 }
@@ -59,7 +59,7 @@ export const deleteContact = (param, navigation) => async (dispatch) => {
     // console.log('error-deleteContact: ', error.response)
     dispatch(setLoadingGlobal(false))
     const title = "Error"
-    const message = error?.message
+    const message = error?.response?.data?.message
     showMessage(title, message)
   }
 }
@@ -81,7 +81,7 @@ export const editContact = (param, navigation) => async (dispatch) => {
     dispatch(setLoadingGlobal(false))
     // console.log('error-editContact: ', error.response)
     const title = "Error"
-    const message = error?.message
+    const message = error?.response?.data?.message
     showMessage(title, message)
   }
 }

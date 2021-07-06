@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ScrollView, Text, View, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { Header, Button, TextInput, Gap } from '../../components'
+import { Header, Button, TextInput, Gap, DeleteModal } from '../../components'
 import { useForm } from '../../hooks'
 import { deleteContact, editContact } from '../../redux/action'
 import Styles from './Styles'
@@ -9,6 +9,7 @@ import Styles from './Styles'
 
 const DetailContact = ({ navigation, route }) => {
   const dispatch = useDispatch()
+  const [isDelete, setIsDelete] = useState(false)
   const [photo, setPhoto] = useState('')
   const [form, setForm] = useForm({
     firstName: route.params.firstName,
@@ -27,7 +28,14 @@ const DetailContact = ({ navigation, route }) => {
   }
 
   const onDelete = () => {
-    dispatch(deleteContact(route.params.id, navigation))
+    setIsDelete(true)
+  }
+
+  const onDeleteContact = () => {
+    setIsDelete(false)
+    setTimeout(() => {
+      dispatch(deleteContact(route.params.id, navigation))
+    }, 500);
   }
 
   return (
@@ -83,6 +91,13 @@ const DetailContact = ({ navigation, route }) => {
             <Text style={Styles.deleteText}>Delete Contact</Text>
           </TouchableOpacity>
         </ScrollView>
+        <DeleteModal
+          title="Delete Contact"
+          label="Are you sure want to delete this contact"
+          isVisible={isDelete}
+          setIsVisible={setIsDelete}
+          onDelete={onDeleteContact}
+        />
       </View>
     </View>
   )
