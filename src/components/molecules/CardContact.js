@@ -29,7 +29,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     marginHorizontal: 24,
-    marginVertical: 8
+    marginVertical: 8,
+    elevation: 3,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2
   },
   image: {
     width: 64,
