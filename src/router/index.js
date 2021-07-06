@@ -1,17 +1,16 @@
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {
   SplashScreen,
   Home,
   ListContact,
-  AddContact
+  AddContact,
+  DetailContact
 } from '../screens'
 // import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 
 const Stack = createStackNavigator()
 // const Stack = createSharedElementStackNavigator()
-// const Tab = createBottomTabNavigator()
 
 const options = {
   gestureEnabled: true,
@@ -37,6 +36,7 @@ const Router = () => {
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='ListContact' component={ListContact} />
       <Stack.Screen name='AddContact' component={AddContact} />
+      <Stack.Screen name='DetailContact' component={DetailContact} />
     </Stack.Navigator>
   )
 }

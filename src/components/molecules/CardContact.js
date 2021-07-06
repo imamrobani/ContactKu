@@ -1,12 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { ProfileDummy } from '../../assets'
 import { Colors, Fonts } from '../../consts'
 import { Scale } from '../../utils'
+import { useNavigation } from '@react-navigation/native'
 
 const CardContact = ({ photo = ProfileDummy, name, age }) => {
+  const navigation = useNavigation()
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('DetailContact')}
+    >
       <Image
         source={photo}
         style={styles.image}
@@ -15,7 +21,7 @@ const CardContact = ({ photo = ProfileDummy, name, age }) => {
         <Text style={styles.title}>Name: {name}</Text>
         <Text style={styles.title}>Age: {age}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
