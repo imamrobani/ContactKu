@@ -13,7 +13,7 @@ const CardContact = ({ photo = ProfileDummy, name, age }) => {
       />
       <View style={styles.content}>
         <Text style={styles.title}>Name: {name}</Text>
-        <Text>Age: {age}</Text>
+        <Text style={styles.title}>Age: {age}</Text>
       </View>
     </View>
   )
