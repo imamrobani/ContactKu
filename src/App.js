@@ -4,7 +4,7 @@ import { enableScreens } from 'react-native-screens'
 import Router from './router'
 import 'react-native-gesture-handler'
 import { StatusBar, SafeAreaView } from 'react-native'
-// import { Colors } from './const'
+import { Colors } from './consts'
 // import { Loading } from './components'
 // import { Provider, useSelector } from 'react-redux'
 // import store from './redux/store'
@@ -17,8 +17,8 @@ const MainApp = () => {
 
   return (
     <NavigationContainer>
-      <SafeAreaView />
-      <StatusBar barStyle="light-content" />
+      <SafeAreaView style={{ backgroundColor: Colors.marigold }} />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.marigold} />
       <Router />
       <FlashMessage position="top" />
       {/* {isLoadingGlobal && <Loading />} */}
