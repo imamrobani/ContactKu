@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, FlatList } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { Header, CardContact, AddButton } from '../../components'
 import Styles from './Styles'
 
@@ -28,6 +29,7 @@ const DATA = [
 ]
 
 const ListContact = ({ navigation }) => {
+
   return (
     <View style={Styles.screen}>
       <Header label="List Contact" />

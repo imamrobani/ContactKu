@@ -6,14 +6,14 @@ import 'react-native-gesture-handler'
 import { StatusBar, SafeAreaView } from 'react-native'
 import { Colors } from './consts'
 import { Loading } from './components'
-// import { Provider, useSelector } from 'react-redux'
-// import store from './redux/store'
+import { Provider, useSelector } from 'react-redux'
+import store from './redux/store'
 import FlashMessage from 'react-native-flash-message'
 enableScreens()
 
 const MainApp = () => {
 
-  // const { isLoadingGlobal } = useSelector(state => state.globalReducer)
+  const { isLoadingGlobal } = useSelector(state => state.globalReducer)
 
   return (
     <NavigationContainer>
@@ -21,16 +21,16 @@ const MainApp = () => {
       <StatusBar barStyle="light-content" backgroundColor={Colors.marigold} />
       <Router />
       <FlashMessage position="top" />
-      {/* {isLoadingGlobal && <Loading />} */}
+      {isLoadingGlobal && <Loading />}
     </NavigationContainer>
   )
 }
 
 const App = () => {
   return (
-    // <Provider store={store}>
-    <MainApp />
-    // </Provider>
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
   )
 }
 
