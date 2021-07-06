@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import { ScrollView, Text, View, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { Header, Button, TextInput, Gap } from '../../components'
-import { Colors } from '../../consts'
 import { useForm } from '../../hooks'
-import { deleteContact } from '../../redux/action'
+import { deleteContact, editContact } from '../../redux/action'
 import Styles from './Styles'
 
 
 const DetailContact = ({ navigation, route }) => {
   const dispatch = useDispatch()
   const [photo, setPhoto] = useState('')
-  const [form, setFomr] = useForm({
+  const [form, setForm] = useForm({
     firstName: route.params.firstName,
     lastName: route.params.lastName,
     age: route.params.age,
@@ -19,7 +18,12 @@ const DetailContact = ({ navigation, route }) => {
   })
 
   const onUpdate = () => {
-
+    const params = {
+      id: route.params.id,
+      form
+    }
+    // console.log('params: ', params)
+    dispatch(editContact(params, navigation))
   }
 
   const onDelete = () => {
@@ -33,7 +37,7 @@ const DetailContact = ({ navigation, route }) => {
         onBack={() => navigation.goBack()}
         icon={
           <View style={Styles.buttonHeader}>
-            <Button text="Update" />
+            <Button text="Update" onPress={onUpdate} />
           </View>
         }
       />

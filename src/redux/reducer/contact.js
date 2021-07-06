@@ -1,7 +1,8 @@
 const iniStateContact = {
   createContact: '',
   contact: [],
-  deleteContact: ''
+  deleteContact: '',
+  putContact: ''
 }
 
 export const contactReducer = (state = iniStateContact, action) => {
@@ -14,6 +15,9 @@ export const contactReducer = (state = iniStateContact, action) => {
     }
     case 'DELETE_CONTACT': {
       return { ...state, deleteContact: action.value }
+    }
+    case 'EDIT_CONTACT': {
+      return { ...state, putContact: action.value }
     }
   }
   return state
