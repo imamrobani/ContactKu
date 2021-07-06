@@ -9,7 +9,7 @@ const Styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 16,
+    bottom: 24,
     right: 16
   },
 })
