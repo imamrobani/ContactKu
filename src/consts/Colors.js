@@ -6,7 +6,14 @@ const Colors = {
   fadedRed: '#d9435e',
   veryLightPink: '#ececec',
   brightOrange: '#ff5c00',
-  white: '#ffffff'
+  white: '#ffffff',
+
+  gray: '#757575',
+  gray50: '#F6F6F6',
+  gray100: '#EEEEEE',
+  gray200: '#E2E2E2',
+  gray300: '#CBCBCB',
+  gray400: '#AFAFAF',
 }
 
 export default Colors
