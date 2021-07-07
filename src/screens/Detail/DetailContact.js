@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { ScrollView, Text, View, TouchableOpacity, Image } from 'react-native'
+import { launchImageLibrary } from 'react-native-image-picker'
 import { useDispatch } from 'react-redux'
 import { Header, Button, TextInput, Gap, DeleteModal } from '../../components'
 import { useForm } from '../../hooks'
 import { deleteContact, editContact } from '../../redux/action'
+import { showMessage } from '../../utils'
 import Styles from './Styles'
 
 
 const DetailContact = ({ navigation, route }) => {
   const dispatch = useDispatch()
   const [isDelete, setIsDelete] = useState(false)
-  const [photo, setPhoto] = useState('')
   const [form, setForm] = useForm({
     firstName: route.params.firstName,
     lastName: route.params.lastName,
@@ -38,6 +39,24 @@ const DetailContact = ({ navigation, route }) => {
     }, 500);
   }
 
+  const onGallery = () => {
+    launchImageLibrary({
+      quality: 1,
+      maxWidth: 640,
+      maxHeight: 480,
+      includeBase64: true
+    }, res => {
+      console.log('res: ', res)
+      console.log('resURI: ', res.assets[0])
+      if (res.didCancel || res.errorCode) {
+        showMessage(`you didn't choose a photo`)
+      } else {
+        const base64 = `data:image/jpg;base64,${res.assets[0].base64}`
+        setForm('photo', base64)
+      }
+    })
+  }
+
   return (
     <View style={Styles.screen}>
       <Header
@@ -52,16 +71,15 @@ const DetailContact = ({ navigation, route }) => {
       <View style={Styles.container}>
         <ScrollView>
           <View style={Styles.photo}>
-            <TouchableOpacity >
+            <TouchableOpacity onPress={onGallery}>
               <View style={Styles.borderPhoto}>
-                {/* {photo
-                  ? <Image source={photo} style={Styles.photoContainer} />
+                {form.photo
+                  ? <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
                   : (
                     <View style={Styles.photoContainer}>
                       <Text style={Styles.addPhoto}>Add Photo</Text>
                     </View>
-                  )} */}
-                <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
+                  )}
               </View>
             </TouchableOpacity>
           </View>

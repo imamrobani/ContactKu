@@ -40,7 +40,6 @@ const AddContact = ({ navigation }) => {
     })
   }
 
-
   return (
     <View style={Styles.screen}>
       <Header label="Add Contact" onBack={() => navigation.goBack()} />
