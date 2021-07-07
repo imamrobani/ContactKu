@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Animated, View, FlatList, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { IcHomeOn } from '../../assets'
-import { Header, CardContact, AddButton, EmptyContact } from '../../components'
+import { Header, CardContact, AddButton } from '../../components'
 import { getContact } from '../../redux/action/contact'
 import Styles from './Styles'
 
