@@ -46,8 +46,8 @@ const DetailContact = ({ navigation, route }) => {
       maxHeight: 480,
       includeBase64: true
     }, res => {
-      console.log('res: ', res)
-      console.log('resURI: ', res.assets[0])
+      // console.log('res: ', res)
+      // console.log('resURI: ', res.assets[0])
       if (res.didCancel || res.errorCode) {
         showMessage(`you didn't choose a photo`)
       } else {

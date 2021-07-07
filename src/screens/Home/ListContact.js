@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Animated, View, FlatList, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { IcHomeOn } from '../../assets'
@@ -14,6 +14,7 @@ const ITEM_SIZE = IMAGE_SIZE + SPACING * 3
 
 const ListContact = ({ navigation }) => {
   const dispatch = useDispatch()
+  const [isFetching, setIsFetching] = useState(false)
   const { contact } = useSelector(state => state.contactReducer)
 
   const scrollY = React.useRef(new Animated.Value(0)).current
@@ -22,12 +23,20 @@ const ListContact = ({ navigation }) => {
     dispatch(getContact())
   }, [])
 
+  const onRefresh = () => {
+    setIsFetching(true)
+    dispatch(getContact())
+    setIsFetching(false)
+  }
+
   return (
     <View style={Styles.screen}>
       <Header label="List Contact" />
       <View style={Styles.listContainer}>
         <Animated.FlatList
           data={contact}
+          onRefresh={() => onRefresh()}
+          refreshing={isFetching}
           scrollEventThrottle={16}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: scrollY } } }],
