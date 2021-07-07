@@ -4,21 +4,40 @@ import { useDispatch } from 'react-redux'
 import { Header, TextInput, Gap, Button } from '../../components'
 import { useForm } from '../../hooks'
 import { createContact } from '../../redux/action'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import Styles from './Styles'
+import { showMessage } from '../../utils'
 
 const AddContact = ({ navigation }) => {
   const dispatch = useDispatch()
-  const [photo, setPhoto] = useState('')
   const [form, setForm] = useForm({
     firstName: '',
     lastName: '',
     age: '',
-    photo: 'https://source.unsplash.com/random/640480'
+    photo: ''
   })
 
   const onSave = () => {
     // console.log('form: ', form)
     dispatch(createContact(form, navigation))
+  }
+
+  const onGallery = () => {
+    launchImageLibrary({
+      quality: 1,
+      maxWidth: 640,
+      maxHeight: 480,
+      includeBase64: true
+    }, res => {
+      console.log('res: ', res)
+      console.log('resURI: ', res.assets[0])
+      if (res.didCancel || res.errorCode) {
+        showMessage(`you didn't choose a photo`)
+      } else {
+        const base64 = `data:image/jpg;base64,${res.assets[0].base64}`
+        setForm('photo', base64)
+      }
+    })
   }
 
 
@@ -28,7 +47,7 @@ const AddContact = ({ navigation }) => {
       <View style={Styles.container}>
         <ScrollView>
           <View style={Styles.photo}>
-            <TouchableOpacity >
+            <TouchableOpacity onPress={onGallery}>
               <View style={Styles.borderPhoto}>
                 {form.photo
                   ? <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
