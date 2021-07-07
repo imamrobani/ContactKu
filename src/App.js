@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { enableScreens } from 'react-native-screens'
 import Router from './router'
 import 'react-native-gesture-handler'
-import { StatusBar, SafeAreaView } from 'react-native'
+import { StatusBar, SafeAreaView, Platform } from 'react-native'
 import { Colors } from './consts'
 import { Loading } from './components'
 import { Provider, useSelector } from 'react-redux'
 import store from './redux/store'
 import FlashMessage from 'react-native-flash-message'
-enableScreens()
+Platform.OS !== 'ios' && enableScreens()
 
 const MainApp = () => {
 

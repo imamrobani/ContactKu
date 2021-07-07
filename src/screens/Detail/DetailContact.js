@@ -6,8 +6,8 @@ import { Header, Button, TextInput, Gap, DeleteModal } from '../../components'
 import { useForm } from '../../hooks'
 import { deleteContact, editContact } from '../../redux/action'
 import { showMessage } from '../../utils'
+import { SharedElement } from 'react-navigation-shared-element'
 import Styles from './Styles'
-
 
 const DetailContact = ({ navigation, route }) => {
   const dispatch = useDispatch()
@@ -71,17 +71,19 @@ const DetailContact = ({ navigation, route }) => {
       <View style={Styles.container}>
         <ScrollView>
           <View style={Styles.photo}>
-            <TouchableOpacity onPress={onGallery}>
-              <View style={Styles.borderPhoto}>
-                {form.photo
-                  ? <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
-                  : (
-                    <View style={Styles.photoContainer}>
-                      <Text style={Styles.addPhoto}>Add Photo</Text>
-                    </View>
-                  )}
-              </View>
-            </TouchableOpacity>
+            <SharedElement id={`item.${route.params.id}.image`}>
+              <TouchableOpacity onPress={onGallery}>
+                <View style={Styles.borderPhoto}>
+                  {form.photo
+                    ? <Image source={{ uri: form.photo }} style={Styles.photoContainer} />
+                    : (
+                      <View style={Styles.photoContainer}>
+                        <Text style={Styles.addPhoto}>Add Photo</Text>
+                      </View>
+                    )}
+                </View>
+              </TouchableOpacity>
+            </SharedElement>
           </View>
           <TextInput
             label='First Name'

@@ -4,6 +4,7 @@ import { ProfileDummy } from '../../assets'
 import { Colors, Fonts } from '../../consts'
 import { Scale } from '../../utils'
 import { useNavigation } from '@react-navigation/native'
+import { SharedElement } from 'react-navigation-shared-element'
 
 const CardContact = ({ photo = ProfileDummy, name, age, data }) => {
   const navigation = useNavigation()
@@ -13,11 +14,16 @@ const CardContact = ({ photo = ProfileDummy, name, age, data }) => {
       style={styles.container}
       onPress={() => navigation.navigate('DetailContact', data)}
     >
-      <Image
-        // source={photo}
+      {/* <Image
         source={{ uri: data?.photo }}
         style={styles.image}
-      />
+      /> */}
+      <SharedElement id={`item.${data?.id}.image`}>
+        <Image
+          source={{ uri: data?.photo }}
+          style={styles.image}
+        />
+      </SharedElement>
       <View style={styles.content}>
         <Text style={styles.title}>Name: {data?.firstName} {data?.lastName} </Text>
         <Text style={styles.title}>Age: {data?.age}</Text>
