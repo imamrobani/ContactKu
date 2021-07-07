@@ -26,21 +26,6 @@ const ListContact = ({ navigation }) => {
     <View style={Styles.screen}>
       <Header label="List Contact" />
       <View style={Styles.listContainer}>
-        {/* <FlatList
-          data={contact}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => {
-            return (
-              <CardContact data={item} />
-            )
-          }}
-          ListEmptyComponent={
-            <View style={{ height }}>
-              <EmptyContact />
-            </View>
-          }
-        /> */}
-
         <Animated.FlatList
           data={contact}
           scrollEventThrottle={16}

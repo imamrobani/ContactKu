@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { LogoContact } from '../../assets'
+import { LogoContact, Logo } from '../../assets'
 import * as Animatable from 'react-native-animatable'
 import { Colors, Fonts } from '../../consts'
 
